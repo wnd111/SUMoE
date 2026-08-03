@@ -1,0 +1,4 @@
+forest:
+  candidate_top_k: 1
+data:
+  forest_dir: data/forests-k1

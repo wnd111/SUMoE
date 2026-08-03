@@ -1,0 +1,4 @@
+parsers:
+  sources: [stanza]
+data:
+  forest_dir: data/forests-stanza

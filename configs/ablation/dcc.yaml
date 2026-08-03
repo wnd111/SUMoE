@@ -1,0 +1,3 @@
+variant: dcc
+model:
+  dcc_centroids_file: checkpoints/dcc/centroids.pt

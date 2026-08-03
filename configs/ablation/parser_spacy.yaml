@@ -1,0 +1,4 @@
+parsers:
+  sources: [spacy]
+data:
+  forest_dir: data/forests-spacy
