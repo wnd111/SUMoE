@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools==75.3.0", "wheel==0.44.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sumoe-finley-paper-aligned-code"
+version = "1.0.0"
+description = "Finley paper-aligned public source release of syntax-uncertainty-aware mixture-of-experts"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+  "torch==2.4.1",
+  "transformers==4.46.3",
+  "datasets==2.21.0",
+  "accelerate==1.1.1",
+  "deepspeed==0.15.4",
+  "stanza==1.9.2",
+  "spacy==3.8.2",
+  "scikit-learn==1.5.2",
+  "scipy==1.14.1",
+  "rouge-score==0.1.2",
+  "PyYAML==6.0.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.3.3", "ruff==0.7.3", "mypy==1.13.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["parser_runtime: tests requiring installed parser model resources"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*.py" = ["E402"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+packages = ["sumoe"]
+ignore_missing_imports = true
+disallow_subclassing_any = false
+disable_error_code = ["no-any-return", "no-untyped-call"]
