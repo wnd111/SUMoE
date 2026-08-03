@@ -1,0 +1,12 @@
+parsers:
+  sources: [stanza, spacy, transition]
+  stanza_model: en
+  spacy_model: en_core_web_trf
+  transition_checkpoint: checkpoints/transition/best.pt
+  calibration_file: data/parser-calibration.json
+  spacy_beam_width: 16
+  spacy_beam_density: 0.0001
+  transition_beam_size: 16
+forest:
+  candidate_top_k: 5
+  edge_temperature: 1.0
