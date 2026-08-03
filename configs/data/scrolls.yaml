@@ -1,0 +1,4 @@
+data:
+  tasks: [gov_report, summ_screen_fd, qmsum, qasper, narrative_qa, quality, contract_nli]
+  data_dir: data/scrolls
+  forest_dir: data/forests
