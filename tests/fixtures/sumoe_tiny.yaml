@@ -1,0 +1,55 @@
+model:
+  base_model: meta-llama/Llama-3.1-8B-Instruct
+  hidden_size: 4096
+  num_layers: 32
+  injection_layers: [4, 8, 12, 16, 20, 24, 28, 32]
+  num_experts: 8
+  top_k: 2
+  expert_heads: 8
+  expert_intermediate_size: 4096
+  expert_dropout: 0.1
+  router_dim: 1024
+  gat_node_dim: 256
+  gat_heads: 4
+forest:
+  candidate_top_k: 5
+  edge_temperature: 1.0
+  forest_coefficient: 1.0
+training:
+  global_batch_size: 64
+  world_size: 8
+  micro_batch_size: 1
+  gradient_accumulation: 8
+  learning_rate: 0.00003
+  beta1: 0.9
+  beta2: 0.98
+  weight_decay: 0.01
+  balance_coefficient: 0.05
+  max_length: 4096
+  max_target_length: 512
+  seeds: [13, 21, 42]
+  epochs: 3
+  warmup_ratio: 0.03
+  minimum_learning_rate: 0.000003
+  max_grad_norm: 1.0
+  save_steps: 500
+  logging_steps: 100
+data:
+  tasks: [gov_report, summ_screen_fd, qmsum, qasper, narrative_qa, quality, contract_nli]
+  data_dir: data/scrolls
+  forest_dir: data/forests
+evaluation:
+  max_new_tokens: 512
+  num_beams: 1
+  do_sample: false
+  warmup_iterations: 20
+  timed_iterations: 100
+parsers:
+  stanza_model: en
+  spacy_model: en_core_web_trf
+  transition_checkpoint: checkpoints/transition/best.pt
+  calibration_file: data/parser-calibration.json
+  spacy_beam_width: 16
+  spacy_beam_density: 0.0001
+  transition_beam_size: 16
+variant: sumoe
